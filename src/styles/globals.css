@@ -1,27 +1,105 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 80px;
+  background: white;
+}
+.navbar__top {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.navbar__logo {
+  color: #6332ff;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0px 18px;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.navbar__icons {
+  margin-right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50px;
 }
+
+.navbar__icons--icon {
+  font-size: 10px;
+}
+
+.navbar__list {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 42px;
+  box-shadow: 0 2px 3px 0 rgb(0 0 0 / 0.05);
+}
+
+
+.navbar__list--item {
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.navbar__list--item:hover {
+  color: darkgray;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  height: 50px;
+  background: black;
+}
+
+.layout {
+  padding-top: 80px;
+}
+
+/*@media only screen and (max-width: 600px) {*/
+/*  .navbar--mobile {*/
+/*    position: fixed;*/
+/*    width: 100%;*/
+/*    top: 52px;*/
+/*    background: darkblue;*/
+/*    color: white;*/
+/*    height: 100vh;*/
+/*  }*/
+
+/*  .navbar__list {*/
+/*    display: none;*/
+/*  }*/
+
+/*  .navbar__button {*/
+/*    display: block;*/
+/*    padding: 0px 18px;*/
+/*  }*/
+
+/*  .navbar__list--item--mobile {*/
+/*    cursor: pointer;*/
+/*  }*/
+
+/*  .navbar__list--item--mobile:hover {*/
+/*    color: darkgray;*/
+/*  }*/
+
+/*  .navbar__list--mobile {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    gap: 16px;*/
+/*    align-items: start;*/
+/*    padding: 24px 18px;*/
+/*  }*/
+/*}*/
