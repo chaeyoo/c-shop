@@ -1,18 +1,23 @@
 interface IProduct {
-    // productId: number;
-    // serialNumber: string;
-    imageUrl: string[];
-    name: string;
+    // id: string;
     brand: string;
-    price: number;
-    like: number;
+    color: string[];
     discount: number;
+    gender: "W" | "M" | "U";
+    imageUrl: string[];
+    like: number;
     mainCtgr: string;
     subCtgr: string;
-    sex: "W" | "M" | "U";
-    season: string;
-    color: string[];
+    monthSaleVol: number;
+    yearSaleVol: number;
+    weekSaleVol: number;
+    name: string;
     size: string[];
+    sizeInfo: string;
+    productInfo: string;
+    price: number;
+    season: string;
+    regDt: string;
 }
 
 const mainCtrg = [

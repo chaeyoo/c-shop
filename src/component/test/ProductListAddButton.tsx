@@ -1,10 +1,9 @@
 import {store} from "@/remote/firebase";
 import {doc, collection, writeBatch } from 'firebase/firestore';
 import {COLLECTIONS} from '@/constants';
-import {clothes, brand, clothesColor, clothesSize} from "@/mock/product_w";
-// import {clothes, brand, clothesColor, clothesSize} from "@/mock/product_m";
+// import {clothes, brand, clothesColor, clothesSize} from "@/mock/product_w";
+import {clothes, brand, clothesColor, clothesSize} from "@/mock/product_m";
 // import {shoes, brand, shoesSize, shoesColor} from "@/mock/product_w";
-
 // import {shoes, brand, shoesSize, shoesColor} from "@/mock/product_m";
 // import {oneSize, brand, onesizeSize, onesizeColor} from "@/mock/product_m";
 
@@ -22,13 +21,13 @@ export default function ProductButton() {
                             brand: brand[j].value,
                             color: clothesColor[k%4],
                             discount: Math.floor(Math.random() * 21),
-                            gender: "W",
-                            // gender: "M",
+                            // gender: "W",
+                            gender: "M",
                             imageUrl: ["https://cataas.com/cat?width=300&height=500"],
                             like: Math.floor(Math.random() * 101),
                             mainCtgr: clothes[i].main,
                             monthSaleVol:Math.floor(Math.random() * (1000 - 50 + 1)) + 50,
-                            name: `${brand[j].label} ${clothes[i].label} ${k+1}`,
+                            name: `남성 ${brand[j].label} ${clothes[i].label} ${k+1}`,
                             price:  Math.round(Math.floor(Math.random() * (10000 - 2000 + 1)) + 2000/100)*100,
                             regDt: new Date(),
                             season: `23FW`,
@@ -36,6 +35,8 @@ export default function ProductButton() {
                             subCtgr: clothes[i].value,
                             weekSaleVol: Math.floor(Math.random() * (200 - 10 + 1)) + 10,
                             yearSaleVol: Math.floor(Math.random() * (5000 - 100 + 1)) + 100,
+                            productInfo: `<p>상품정보: 남성 ${brand[j].label} ${clothes[i].label} ${k+1}</p>`,
+                            sizeInfo: `<p>사이즈 들어갈 자리</p>`
                         }
                     )
                 }
