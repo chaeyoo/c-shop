@@ -56,7 +56,7 @@ export default function ProductList() {
 
                             </div>
                         }
-                        contents={<ProductRow.Text title={product.price}/>}
+                        contents={<ProductRow.Text title={product.price.toString()}/>}
                         right={<div>{product.brand}
                     </div>}
                         // onClick={}
