@@ -14,7 +14,8 @@ interface LayoutProps {
 }
 
 export default function Layout({children}: LayoutProps) {
-    return (<div className="layout">
+    return (
+        <div className="layout">
         <div className="navbar">
             <div className="navbar__top">
                 <div className="navbar__logo">CSHOP</div>
