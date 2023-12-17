@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {mainCtgr, subCtgr} from "@/mock/category";
 import Image from "next/image";
@@ -81,6 +81,10 @@ export const Tab = () => {
         }
         setSubCtgrs([all, ...filteredSubCtgr]);
     };
+
+    useEffect(() => {
+        selectMenuHandler("TOP");
+    }, [])
 
     return (<>
         <Container>
