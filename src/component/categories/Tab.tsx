@@ -1,6 +1,7 @@
 import {useState} from 'react';
 import styled from 'styled-components';
-import {mainCtgr} from "@/mock/category";
+import {mainCtgr, subCtgr} from "@/mock/category";
+import Image from "next/image";
 
 const TabContainer = styled.div`
   width: 25%;
@@ -19,7 +20,7 @@ const TabMenu = styled.ul`
   }
 
   .focused {
-    background-color: #dcdcdc;
+    background-color: #f4f4f4;
     font-weight: bold;
     color: rgb(21, 20, 20);
   }
@@ -29,9 +30,37 @@ const TabMenu = styled.ul`
   }
 `;
 
-const Desc = styled.div`
+const MenuContainer = styled.div`
+  padding-left: 20px;
   width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #f4f4f4;
+  .div:last-child {
+    margin-right: auto;
+  }
+`;
+
+const Menu = styled.div`
   text-align: center;
+  background-color: #6332ff;
+  width: 90px;
+  height: 90px;
+  background-color: #ededed;
+  border-radius: 20px;
+  margin: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  .menuText {
+    font-size: 12px;
+    font-weight: bold;
+  }
+
 `;
 
 const Container = styled.div`
@@ -39,11 +68,18 @@ const Container = styled.div`
 `
 export const Tab = () => {
     const [currentTab, clickTab] = useState<string>("TOP");
-
+    const [subCtgrs, setSubCtgrs] = useState<any[]>([]);
 
     const selectMenuHandler = (index: string) => {
         clickTab(index);
-        // 클릭했을 때 메인 밸류로 서브 카테고리 필터해서 뿌려주기
+        const filteredSubCtgr = subCtgr.filter((el) => el.main === index);
+        let all = {
+            main: index,
+            label: "전체",
+            value: "ALL",
+            logoImgUrl: "https://cataas.com/cat?width=40&height=40"
+        }
+        setSubCtgrs([all, ...filteredSubCtgr]);
     };
 
     return (<>
@@ -52,13 +88,24 @@ export const Tab = () => {
                 <TabMenu>
                     {mainCtgr.map((el, index) => (<li
                         key={index}
-                        // className={index === currentTab ? "submenu focused" : "submenu"}
+                        className={el.value === currentTab ? "submenu focused" : "submenu"}
                         onClick={() => selectMenuHandler(el.value)}>{el.label}</li>))}
                 </TabMenu>
             </TabContainer>
-            <Desc>
-                <p>서브카테고리목록</p>
-            </Desc>
+            <MenuContainer>
+                    {subCtgrs.map((v, i) => (
+                        <Menu key={i}>
+                            <Image
+                               style={{borderRadius: "50px"}}
+                               src={v.logoImgUrl}
+                               width={55}
+                               height={55}
+                               alt="상품이미지"
+                            />
+                            <p className={"menuText"}>{v.label}</p>
+                        </Menu>
+                    ))}
+            </MenuContainer>
         </Container>
     </>);
 };
