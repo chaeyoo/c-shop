@@ -75,7 +75,7 @@ export const Tab = () => {
     const [subCtgrs, setSubCtgrs] = useState<any[]>([]);
     const router = useRouter();
 
-    const onClickSubCtgr = (v) => {
+    const onClickSubCtgr = (v: any) => {
         router.push({
             pathname: `/products/${v.main.toLowerCase()}`,
             query: {sub: v.value.toLowerCase()}

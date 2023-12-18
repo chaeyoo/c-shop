@@ -3,8 +3,8 @@ import {store} from './firebase';
 import {COLLECTIONS} from '../constants';
 
 export async function  getProducts(
-    mainCtgr,
-    subCtgr ,
+    mainCtgr: any,
+    subCtgr: any,
     pageParam?: QuerySnapshot<IProduct>
 ) {
     console.log('mainCtgr::', mainCtgr );

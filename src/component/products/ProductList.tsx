@@ -7,7 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {useCallback} from "react";
 import Image from "next/image";
 
-export default function ProductList(props) {
+export default function ProductList(props: {mainCtgr: any , subCtgr: any }) {
     const {mainCtgr, subCtgr} = props;
     const {
         data, hasNextPage = false, fetchNextPage, isFetching

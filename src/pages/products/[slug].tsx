@@ -16,6 +16,8 @@ export default function Products() {
         }
     }, [])
     return (<div>
+        {query.slug && query.sub && (
             <ProductList mainCtgr={query.slug} subCtgr={query.sub}/>
+        )}
         </div>)
 }
