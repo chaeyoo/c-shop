@@ -9,19 +9,35 @@ export async function  getProducts(
 ) {
     console.log('mainCtgr::', mainCtgr );
     console.log('subCtgr::', subCtgr);
-    const productQuery =
-        !pageParam
-        ? query(collection(store, COLLECTIONS.PRODUCT)
-                , where("mainCtgr", "==", mainCtgr.toUpperCase())
-                , where("subCtgr", "==", subCtgr.toUpperCase())
-                , limit(10))
-        : query(
-            collection(store, COLLECTIONS.PRODUCT)
-                ,startAfter(pageParam)
-                , where("mainCtgr", "==", mainCtgr.toUpperCase())
-                , where("subCtgr", "==", subCtgr.toUpperCase())
-                ,limit(10)
-            );
+    let productQuery;
+    if (subCtgr === "all") {
+        productQuery =
+            !pageParam
+                ? query(collection(store, COLLECTIONS.PRODUCT)
+                    , where("mainCtgr", "==", mainCtgr.toUpperCase())
+                    , limit(10))
+                : query(
+                    collection(store, COLLECTIONS.PRODUCT)
+                    ,startAfter(pageParam)
+                    , where("mainCtgr", "==", mainCtgr.toUpperCase())
+                    ,limit(10)
+                );
+    } else {
+        productQuery =
+            !pageParam
+                ? query(collection(store, COLLECTIONS.PRODUCT)
+                    , where("mainCtgr", "==", mainCtgr.toUpperCase())
+                    , where("subCtgr", "==", subCtgr.toUpperCase())
+                    , limit(10))
+                : query(
+                    collection(store, COLLECTIONS.PRODUCT)
+                    ,startAfter(pageParam)
+                    , where("mainCtgr", "==", mainCtgr.toUpperCase())
+                    , where("subCtgr", "==", subCtgr.toUpperCase())
+                    ,limit(10)
+                );
+    }
+
     const productSnapshot = await getDocs(productQuery);
 
     const lastVisible = productSnapshot.docs[productSnapshot.docs.length - 1];
