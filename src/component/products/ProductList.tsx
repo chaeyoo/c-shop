@@ -4,14 +4,17 @@ import {useInfiniteQuery} from "react-query";
 import {getProducts} from "@/remote/products";
 import {flatten} from "lodash";
 import InfiniteScroll from "react-infinite-scroll-component";
-import {useCallback} from "react";
+import {useCallback, useState} from "react";
 import Image from "next/image";
+import Loader from "@/component/loader/Loader";
 
 export default function ProductList(props: {mainCtgr: any , subCtgr: any }) {
+    const [isLoading, setIsLoading] = useState<boolean>(false);
     const {mainCtgr, subCtgr} = props;
     const {
         data, hasNextPage = false, fetchNextPage, isFetching
     } = useInfiniteQuery(['products'], ({pageParam}) => {
+
         return getProducts(mainCtgr, subCtgr, pageParam);
     }, {
         getNextPageParam: (snapShot) => {
@@ -26,15 +29,13 @@ export default function ProductList(props: {mainCtgr: any , subCtgr: any }) {
         fetchNextPage();
     }, [fetchNextPage, hasNextPage, isFetching])
     if (data == null) {
-        return null
+        return null;
     }
 
     console.log(data);
-
     const products = flatten(data?.pages.map(({items}) => items));
     return (
         <div>
-
             <InfiniteScroll
                 dataLength={products.length}
                 hasMore={hasNextPage}
