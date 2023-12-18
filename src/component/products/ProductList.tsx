@@ -7,11 +7,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {useCallback} from "react";
 import Image from "next/image";
 
-export default function ProductList() {
+export default function ProductList(props) {
+    const {mainCtgr, subCtgr} = props;
     const {
         data, hasNextPage = false, fetchNextPage, isFetching
     } = useInfiniteQuery(['products'], ({pageParam}) => {
-        return getProducts(pageParam);
+        return getProducts(mainCtgr, subCtgr, pageParam);
     }, {
         getNextPageParam: (snapShot) => {
             return snapShot.lastVisible;
@@ -33,6 +34,7 @@ export default function ProductList() {
     const products = flatten(data?.pages.map(({items}) => items));
     return (
         <div>
+
             <InfiniteScroll
                 dataLength={products.length}
                 hasMore={hasNextPage}

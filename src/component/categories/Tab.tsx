@@ -2,6 +2,8 @@ import {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import {mainCtgr, subCtgr} from "@/mock/category";
 import Image from "next/image";
+import SearchFilter from "@/component/search/SearchFilter";
+import { useRouter } from 'next/router'
 
 const TabContainer = styled.div`
   width: 25%;
@@ -49,13 +51,14 @@ const Menu = styled.div`
   background-color: #6332ff;
   width: 90px;
   height: 90px;
-  background-color: #ededed;
+  background-color: #ffffff;
   border-radius: 20px;
   margin: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
   .menuText {
     font-size: 12px;
     font-weight: bold;
@@ -66,10 +69,19 @@ const Menu = styled.div`
 const Container = styled.div`
   display: flex;
 `
+
 export const Tab = () => {
     const [currentTab, clickTab] = useState<string>("TOP");
     const [subCtgrs, setSubCtgrs] = useState<any[]>([]);
+    const router = useRouter();
 
+    const onClickSubCtgr = (v) => {
+        router.push({
+            pathname: `/products/${v.main.toLowerCase()}`,
+            query: {sub: v.value.toLowerCase()}
+        })
+
+    }
     const selectMenuHandler = (index: string) => {
         clickTab(index);
         const filteredSubCtgr = subCtgr.filter((el) => el.main === index);
@@ -87,6 +99,7 @@ export const Tab = () => {
     }, [])
 
     return (<>
+        <SearchFilter />
         <Container>
             <TabContainer>
                 <TabMenu>
@@ -98,7 +111,7 @@ export const Tab = () => {
             </TabContainer>
             <MenuContainer>
                     {subCtgrs.map((v, i) => (
-                        <Menu key={i}>
+                        <Menu key={i} onClick={() => onClickSubCtgr(v)}>
                             <Image
                                style={{borderRadius: "50px"}}
                                src={v.logoImgUrl}

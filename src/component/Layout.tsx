@@ -6,7 +6,6 @@ import {CiHeart} from "react-icons/ci";
 import {IoPersonOutline} from "react-icons/io5";
 import {GiBackwardTime} from "react-icons/gi";
 import {RiHome3Line} from "react-icons/ri";
-import {IoIosSearch} from "react-icons/io";
 import {SlBasket} from "react-icons/sl";
 
 interface LayoutProps {
@@ -20,7 +19,6 @@ export default function Layout({children}: LayoutProps) {
             <div className="navbar__top">
                 <div className="navbar__logo">CSHOP</div>
                 <div className="navbar__icons">
-                    <IoIosSearch size="19"/>
                     <SlBasket size="19"/>
                 </div>
             </div>
