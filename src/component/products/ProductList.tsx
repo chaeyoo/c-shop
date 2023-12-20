@@ -7,8 +7,15 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {useCallback, useState} from "react";
 import Image from "next/image";
 import Loader from "@/component/loader/Loader";
+import styled from 'styled-components';
 
-export default function ProductList(props: {mainCtgr: any , subCtgr: any }) {
+const List = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+`
+export default function ProductList(props: { mainCtgr: any, subCtgr: any }) {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const {mainCtgr, subCtgr} = props;
     const {
@@ -34,38 +41,41 @@ export default function ProductList(props: {mainCtgr: any , subCtgr: any }) {
 
     console.log(data);
     const products = flatten(data?.pages.map(({items}) => items));
-    return (
-        <div>
+    return (<div style={{margin: "5px"}}>
             <InfiniteScroll
                 dataLength={products.length}
                 hasMore={hasNextPage}
-                loader={<></>}
+                loader={<Loader basic={true}/>}
                 next={loadMore}
             >
-                {products.map((product, idx) => {
-                    console.log(product);
-                    return (
-                        <ProductListRow
+                <List>
+                    {products.map((product, idx) => {
+                        console.log(product);
+                        return (<ProductListRow
                             key={idx}
-                            left={
-                            <div>
-                                {product.name}
-                                <Image
-                                    src={product.imageUrl[0]}
-                                    width={150}
-                                    height={250}
-                                    alt="상품이미지"
-                                />
+                            left={<div>
+                                <p style={{
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+                                    whiteSpace: "nowrap",
+                                    width: "170px",
+                                }}>
+                                    {product.name}
+                                </p>
 
-                            </div>
-                        }
-                        contents={<ProductRow.Text title={product.price.toString()}/>}
-                        right={<div>{product.brand}
-                    </div>}
-                        // onClick={}
-                    />)
-                })}
+
+                            </div>}
+                            contents={<ProductRow.Text title={product.price.toString()}/>}
+                            right={ <Image
+                                src={product.imageUrl[0]}
+                                width={100}
+                                height={150}
+                                alt="상품이미지"
+                            />}
+                            // onClick={}
+                        />)
+                    })}
+                </List>
             </InfiniteScroll>
-        </div>
-    )
+        </div>)
 }
