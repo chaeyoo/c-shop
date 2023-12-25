@@ -33,7 +33,6 @@ export default function Slideshow({slides}: {slides: any[]}){
             <div style={{
                 margin: "0 auto",
                 overflow: "hidden",
-                maxWidth: "300px"
             }}>
                 <div
                     style={{

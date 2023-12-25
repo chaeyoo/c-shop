@@ -51,7 +51,7 @@ export default function Layout({children}: LayoutProps) {
             <Link href="/">
                 <RiHome3Line size={23} color={"white"}/>
             </Link>
-            <Link href="#">
+            <Link href="/mypage">
                 <IoPersonOutline size={22} color={"white"}/>
             </Link>
             <Link href="#">
