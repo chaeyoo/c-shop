@@ -7,8 +7,8 @@ interface ITextProps {
     typography?: Typography
     color?: Colors
     display: CSSProperties['display']
-    textAlign: CSSProperties['textAlign']
-    fontWeight: CSSProperties['fontWeight']
+    textAlign?: CSSProperties['textAlign']
+    fontWeight?: CSSProperties['fontWeight']
     bold?: boolean;
 }
 
