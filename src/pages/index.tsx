@@ -3,6 +3,8 @@ import Slideshow from "@/component/slides/Slideshow";
 import {useState} from "react";
 import {css} from "@emotion/react";
 import styled from "@emotion/styled";
+import {Text} from "@/component/text/Text";
+import {Button} from "@/component/button/Button";
 
 export default function Home() {
     const bold = css`
@@ -12,13 +14,6 @@ export default function Home() {
         ${bold};
         width: 200px;
         height: 200px;
-    `
-
-    const Button = styled.button`
-        width: 200px;
-        height: 100px;
-        background-color: aquamarine;
-        ${bold};
     `
 
     const [slideData, setSlideData] = useState<any[]>(
@@ -31,7 +26,15 @@ export default function Home() {
         ])
   return (
           <div>
-              <Slideshow slides={slideData} />
+              <Text typography="t1" display="block">텍쓰트요오</Text>
+              <Text typography="t2" display="block" color="blue">텍쓰트요오</Text>
+              <Text typography="t3" display="block">텍쓰트요오</Text>
+              <Button color={"success"}>클릭하라</Button>
+              <Button color={"danger"}>클릭하라</Button>
+              <Button color={"success"} primary={true}>클릭하라</Button>
+              <Button color={"danger"} primary={true}>클릭하라</Button>
+              <Button full={true} primary={true} disabled={true}>클릭하라</Button>
+              <Slideshow slides={slideData}/>
               <div css={containerStyles}>
                   까꿍
                     <Button>스타일버튼</Button>
