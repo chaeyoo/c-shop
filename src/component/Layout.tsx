@@ -33,7 +33,7 @@ export default function Layout({children}: LayoutProps) {
                 <Link href="#" className="navbar__list--item">
                     매거진
                 </Link>
-                <Link href="#" className="navbar__list--item">
+                <Link href="/events" className="navbar__list--item">
                     이벤트
                 </Link>
             </div>

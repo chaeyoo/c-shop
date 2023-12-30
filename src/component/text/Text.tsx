@@ -6,7 +6,7 @@ import styled from "@emotion/styled";
 interface ITextProps {
     typography?: Typography
     color?: Colors
-    display: CSSProperties['display']
+    display?: CSSProperties['display']
     textAlign?: CSSProperties['textAlign']
     fontWeight?: CSSProperties['fontWeight']
     bold?: boolean;

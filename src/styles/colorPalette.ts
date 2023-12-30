@@ -7,7 +7,7 @@ export const colorPalette = css`
     --green: #44ad47;
     --white: #fff;
     --black: #212121;
-    --gray: #c4c4c4;
+    --grey: #c4c4c4;
   }
 `
 
@@ -17,7 +17,7 @@ export const colors = {
     green: 'var(--green)',
     white: 'var(--white)',
     black: 'var(--black)',
-    gray: 'var(--gray)'
+    grey: 'var(--grey)'
 }
 
 export type Colors = keyof typeof colors
