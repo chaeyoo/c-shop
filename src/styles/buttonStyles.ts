@@ -14,6 +14,10 @@ export const buttonPrimaryMap = {
       background-color: ${colors.red};
       color: ${colors.white}
     `,
+    black: css`
+      background-color: ${colors.black};
+      color: ${colors.white}
+    `,
 }
 
 export const buttonColorMap = {
@@ -32,12 +36,18 @@ export const buttonColorMap = {
       color: ${colors.red};
       border: 1px solid ${colors.red};
     `,
+    black: css`
+      background-color: ${colors.white};
+      color: ${colors.black};
+      border: 1px solid ${colors.black};
+    `,
+
 }
 
 export const buttonSizeMap = {
     small: css`
       font-size: 13px;
-      padding: 8px 9px;
+      padding: 6px 9px;
     `,
     medium: css`
       font-size: 15px;
@@ -46,7 +56,6 @@ export const buttonSizeMap = {
     large: css`
       font-size: 18px;
       padding: 12px 10px;
-    
     `
 }
 

@@ -8,12 +8,12 @@ interface IButtonProps {
     primary?: boolean;
     full?: boolean;
     disabled?: boolean;
+    borderRadius?: boolean;
 }
 
 export const Button = styled.button<IButtonProps>({
     cursor: 'pointer',
     fontWeight: 'bold',
-    borderRadius: '6px',
 },
     ({ color ='primary', primary }) =>
         primary ? buttonPrimaryMap[color] : buttonColorMap[color],
@@ -31,5 +31,10 @@ export const Button = styled.button<IButtonProps>({
         css`
           opacity: 0.26;
           cursor: initial;
-        ` : css``
+        ` : css``,
+    ({ borderRadius }) =>
+        borderRadius ?
+            css`
+          border-radius: 6px;
+        ` : css``,
 )
