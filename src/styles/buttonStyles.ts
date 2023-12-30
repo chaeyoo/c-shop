@@ -18,6 +18,10 @@ export const buttonPrimaryMap = {
       background-color: ${colors.black};
       color: ${colors.white}
     `,
+    purple: css`
+      background-color: ${colors.purple};
+      color: ${colors.white}
+    `,
 }
 
 export const buttonColorMap = {
@@ -41,6 +45,11 @@ export const buttonColorMap = {
       color: ${colors.black};
       border: 1px solid ${colors.black};
     `,
+    purple: css`
+      background-color: ${colors.white};
+      color: ${colors.purple};
+      border: 1px solid ${colors.purple};
+    `,
 
 }
 
@@ -54,8 +63,9 @@ export const buttonSizeMap = {
       padding: 10px 15px;
     `,
     large: css`
-      font-size: 18px;
-      padding: 12px 10px;
+      letter-spacing: 2px;
+      font-size: 17px;
+      padding: 15px 12px;
     `
 }
 

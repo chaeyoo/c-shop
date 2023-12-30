@@ -9,17 +9,18 @@ import { Input } from "@/component/input/Input";
 
 interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 	label?: React.ReactNode;
+	isRequired?: boolean;
 	hasError?: boolean;
 	helpMessage?: React.ReactNode;
 }
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 	function TextField(
-		{ label, hasError, helpMessage, onFocus, onBlur, ...props },
+		{ label, isRequired, hasError, helpMessage, onFocus, onBlur, ...props },
 		ref
 	) {
 		const [focused, setFocused] = useState<boolean>(false);
-        const labelColor = hasError ? "red" : focused ? "blue" : undefined;
+		const labelColor = hasError ? "red" : focused ? "blue" : undefined;
 		const handleFocus: FocusEventHandler<HTMLInputElement> = (event) => {
 			setFocused(true);
 			onFocus?.(event);
@@ -33,6 +34,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 				{label ? (
 					<Text
 						typography="t7"
+						color={labelColor}
 						display="inline-block"
 						style={{
 							marginBottom: "6px",
@@ -41,7 +43,18 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 						{label}
 					</Text>
 				) : null}
-
+				{isRequired ? (
+					<Text
+						typography="t7"
+						color={labelColor}
+						display="inline-block"
+						style={{
+							marginBottom: "6px",
+						}}
+					>
+						{" *"}
+					</Text>
+				) : null}
 				<Input
 					ref={ref}
 					aria-invalid={hasError}
@@ -54,7 +67,7 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 					<Text
 						typography="t7"
 						display="inline-block"
-                        color={labelColor}
+						color={labelColor}
 						style={{ marginTop: "6px", fontSize: "12px" }}
 					>
 						{helpMessage}

@@ -1,41 +1,57 @@
-import {IoPersonOutline} from "react-icons/io5";
-import { useRouter } from 'next/router'
+import { Button } from "@/component/button/Button";
+import { Flex } from "@/component/flex/Flex";
+import { Text } from "@/component/text/Text";
+import styled from "@emotion/styled";
+import { useRouter } from "next/router";
+
+const LoginContainer = styled.div`
+	background-color: #fff;
+	padding: 20px 30px;
+`;
+const Gap = styled.div`
+	background-color: #ebebeb;
+	height: 10px;
+`;
 
 export default function Mypage() {
-    const router = useRouter();
-    return <>
-        <div style={{display: "flex", margin: "10px 20px"}}>
-            <div style={{background: "#999", margin: "auto 0", borderRadius: "50px"}}>
-                <IoPersonOutline  size={50} color={"gray"}/>
-            </div>
-            <div style={{margin: "10px 20px"}}>
-                <button
-                    style={{
-                        border: "1px solid gray",
-                        width: "70px"
-                    }}
-                    onClick={() => {router.push("/signin")}}
-                >
-                    로그인
-                </button>
-                <p>주문/혜택 등의 정보를 빠르게<br/> 확인할 수 있습니다.</p>
-            </div>
-        </div>
+	const router = useRouter();
+	return (
+		<>
+			<LoginContainer>
+				<Flex direction={"column"}>
+					<Text
+						typography="t4"
+						bold
+						onClick={() => {
+							router.push("/signin");
+						}}
+					>
+						로그인 {">"}
+					</Text>
 
-        <div style={{display: "flex", justifyContent: "space-around", margin: "10px 20px"}}>
-            <p style={{fontSize: "14px"}}>아직 CSHOP 회원이 아니신가요?</p>
-            <button style={{
-                    backgroundColor: "black",
-                    color: "white",
-                    padding: "3px",
-                    border: "1px solid gray",
-                    width: "80px",
-                    fontSize: "14px"
-                }}
-                onClick={() => {router.push("/signup")}}
-            >
-                회원가입
-            </button>
-        </div>
-    </>
+					<Text typography="t7">
+						주문/혜택 등의 정보를 빠르게 <br />
+						확인할 수 있습니다.
+					</Text>
+				</Flex>
+			</LoginContainer>
+			<Gap />
+			<LoginContainer>
+				<Flex justify="space-between" align="center">
+					<Text bold typography="t7">
+						아직 CSHOP 회원이 아니신가요?
+					</Text>
+					<Button
+						color="purple"
+						primary
+						onClick={() => {
+							router.push("/signup");
+						}}
+					>
+						회원가입
+					</Button>
+				</Flex>
+			</LoginContainer>
+		</>
+	);
 }
