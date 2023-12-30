@@ -2,9 +2,7 @@ import { Button } from "@/component/button/Button";
 import { Flex } from "@/component/flex/Flex";
 import { TextField } from "@/component/input/TextField";
 
-interface ISignInProps {}
-
-export default function Index(props: ISignInProps) {
+export default function Index() {
 	return (
 		<>
 			<Flex direction="column" style={{ margin: "15px" }}>

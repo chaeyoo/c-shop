@@ -1,4 +1,5 @@
 import { Button } from "@/component/button/Button";
+import Checkbox from "@/component/checkbox/Checkbox";
 import { Input } from "@/component/input/Input";
 import { TextField } from "@/component/input/TextField";
 import { Text } from "@/component/text/Text";
@@ -66,6 +67,8 @@ export default function Events() {
 			>
 				알러트 열어라
 			</Button>
+			
+			
 		</>
 	);
 }

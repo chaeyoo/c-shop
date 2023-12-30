@@ -7,20 +7,20 @@ import React, {
 import { Text } from "@/component/text/Text";
 import { Input } from "@/component/input/Input";
 
-interface TextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+interface ITextFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 	label?: React.ReactNode;
 	isRequired?: boolean;
 	hasError?: boolean;
 	helpMessage?: React.ReactNode;
 }
 
-export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
+export const TextField = forwardRef<HTMLInputElement, ITextFieldProps>(
 	function TextField(
 		{ label, isRequired, hasError, helpMessage, onFocus, onBlur, ...props },
 		ref
 	) {
 		const [focused, setFocused] = useState<boolean>(false);
-		const labelColor = hasError ? "red" : focused ? "blue" : undefined;
+		const labelColor = hasError ? "red" : undefined;
 		const handleFocus: FocusEventHandler<HTMLInputElement> = (event) => {
 			setFocused(true);
 			onFocus?.(event);
