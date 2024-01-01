@@ -2,23 +2,25 @@ import { colors } from "@/styles/colorPalette";
 import styled from "@emotion/styled";
 import { Button } from "./Button";
 import { createPortal } from "react-dom";
+import { useEffect, useState } from "react";
 
 interface IFixedBottomButtonProps {
 	label: string;
 	onClick: () => void;
-    disabled?: boolean;
+	disabled?: boolean;
 }
 
 export default function FixedBottomButton({
 	label,
 	onClick,
-    disabled
+	disabled,
 }: IFixedBottomButtonProps) {
-	let $portalRoot;
-	if (typeof document !== "undefined") {
-		$portalRoot = document.getElementById("root-portal");
-	}
-	if (!$portalRoot) {
+	const [element, setElement] = useState<HTMLElement | null>(null);
+
+	useEffect(() => {
+		setElement(document.getElementById("root-portal"));
+	}, []);
+	if (!element) {
 		return null;
 	}
 	return createPortal(
@@ -30,12 +32,12 @@ export default function FixedBottomButton({
 				color="purple"
 				size="medium"
 				onClick={onClick}
-                disabled={disabled}
+				disabled={disabled}
 			>
 				{label}
 			</Button>
 		</Container>,
-		$portalRoot
+		element
 	);
 }
 

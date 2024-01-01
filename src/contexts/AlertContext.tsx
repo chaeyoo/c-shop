@@ -3,6 +3,7 @@ import {
 	createContext,
 	useCallback,
 	useContext,
+	useEffect,
 	useMemo,
 	useState,
 } from "react";
@@ -32,10 +33,7 @@ export function AlertContextProvider({
 	children: React.ReactNode;
 }) {
 	const [alertState, setAlertState] = useState(defaultValues);
-	let $portal_root ;
-	if (typeof document !== "undefined") {
-		$portal_root = document.getElementById("root-portal");
-	}
+	const [element, setElement] = useState<HTMLElement | null>(null);
 
 	const close = useCallback(() => {
 		setAlertState(defaultValues);
@@ -56,18 +54,20 @@ export function AlertContextProvider({
 	);
 
 	const values = useMemo(() => ({ open }), [open]);
+
+	useEffect(() => {
+		setElement(document.getElementById("root-portal"));
+	}, []);
+
 	return (
 		<Context.Provider value={values}>
 			{children}
-			{$portal_root
-				? createPortal(<Alert {...alertState} />, $portal_root)
-				: null}
+			{element ? createPortal(<Alert {...alertState} />, element) : null}
 		</Context.Provider>
 	);
 }
 
 export function useAlertContext() {
-	
 	const values = useContext(Context);
 
 	if (!values) {

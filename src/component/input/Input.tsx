@@ -13,7 +13,7 @@ export const Input = styled.input`
 
 	&:focus {
 		outline: none;
-		border-color: ${colors.blue};
+		border-color: ${colors.purple};
 	}
 
 	&[aria-invalid="true"] {
