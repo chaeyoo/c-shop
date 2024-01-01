@@ -47,6 +47,7 @@ export default function ProductList(props: { mainCtgr: any, subCtgr: any }) {
                 hasMore={hasNextPage}
                 loader={<Loader basic={true}/>}
                 next={loadMore}
+                scrollThreshold={"100px"}
             >
                 <List>
                     {products.map((product, idx) => {
