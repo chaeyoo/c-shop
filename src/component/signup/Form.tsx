@@ -8,7 +8,11 @@ import { Spacing } from "../spacing/Spacing";
 import { IFormValues } from "@/models/signup";
 import validator from "validator";
 
-export default function Form() {
+export default function Form({
+	onSubmit,
+}: {
+	onSubmit: (formValues: IFormValues) => void;
+}) {
 	const [formValues, setFormValues] = useState<IFormValues>({
 		email: "",
 		password: "",
@@ -108,7 +112,7 @@ export default function Form() {
 			<FixedBottomButton
 				label="가입하기"
 				onClick={() => {
-					console.log(formValues);
+					onSubmit(formValues);
 				}}
 				disabled={!validResult}
 			/>

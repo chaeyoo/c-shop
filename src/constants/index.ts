@@ -1,3 +1,4 @@
 export const COLLECTIONS = {
-    PRODUCT: 'PRODUCT'
-}
+	PRODUCT: "PRODUCT",
+	USER: "USER",
+} as const;
