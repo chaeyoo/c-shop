@@ -29,12 +29,13 @@ export default function Signup() {
 			doc(collection(store, COLLECTIONS.USER), user.uid),
 			newUser
 		);
-		open({
+	    open({
 			title: "완료",
 			description: "회원가입이 완료 되었습니다.",
 			onButtonClick: () => {},
 			buttonLabel: "확인",
 		});
+        // home으로 이동
 	};
 	return (
 		<>
