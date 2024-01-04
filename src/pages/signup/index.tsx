@@ -5,8 +5,10 @@ import { IFormValues } from "@/models/signup";
 import { auth, store } from "@/remote/firebase";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { collection, doc, setDoc } from "firebase/firestore";
+import { useRouter } from "next/router";
 
 export default function Signup() {
+	const router = useRouter();
 	const { open } = useAlertContext();
 	const handleSubmit = async (formValues: IFormValues) => {
 		console.log(formValues, "formValues");
@@ -35,7 +37,7 @@ export default function Signup() {
 			onButtonClick: () => {},
 			buttonLabel: "확인",
 		});
-        // home으로 이동
+		router.push('/')
 	};
 	return (
 		<>
