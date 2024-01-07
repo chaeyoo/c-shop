@@ -3,7 +3,7 @@ import { COLLECTIONS } from "@/constants";
 import { useAlertContext } from "@/contexts/AlertContext";
 import { IFormValues } from "@/models/signup";
 import { auth, store } from "@/remote/firebase";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import { collection, doc, setDoc } from "firebase/firestore";
 import { useRouter } from "next/router";
 
@@ -31,13 +31,13 @@ export default function Signup() {
 			doc(collection(store, COLLECTIONS.USER), user.uid),
 			newUser
 		);
-	    open({
+		open({
 			title: "완료",
 			description: "회원가입이 완료 되었습니다.",
 			onButtonClick: () => {},
 			buttonLabel: "확인",
 		});
-		router.push('/')
+		router.push("/");
 	};
 	return (
 		<>
