@@ -67,7 +67,7 @@ export default function ProductList(props: { mainCtgr: any; subCtgr: any }) {
 									<div
 										style={{
 											fontSize: "12px",
-											marginBottom: "10px",
+											margin: "10px 0px",
 										}}
 									>
 										{product.brand}
@@ -93,7 +93,7 @@ export default function ProductList(props: { mainCtgr: any; subCtgr: any }) {
 											direction="row"
 											justify="space-between"
 											style={{
-												marginBottom: "3px",
+												margin: "3px 5px",
 											}}
 										>
 											<div
@@ -124,15 +124,19 @@ export default function ProductList(props: { mainCtgr: any; subCtgr: any }) {
 												</div>
 											) : null}
 										</Flex>
-										<div
-											style={{
-												fontSize: "12px",
-                                                textDecoration: "line-through",
-                                                color: "#888",
-											}}
-										>
-											{product.price + "원"}
-										</div>
+										{product.discount ? (
+											<div
+												style={{
+													fontSize: "12px",
+													textDecoration:
+														"line-through",
+													color: "#888",
+                                                    margin: "3px 5px",
+												}}
+											>
+												{product.price + "원"}
+											</div>
+										) : null}
 									</>
 								}
 								image={

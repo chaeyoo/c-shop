@@ -30,11 +30,11 @@ function ProductListRow(props: IProductProps) {
 			}}
 		>
 			<div>{image}</div>
-			<div style={{margin: "15px 4px", height: '100px'}}>
+			<div style={{ height: "80px", margin:"0px 4px" }}>
 				<div>{brand}</div>
 				<div>{name}</div>
-				<div>{price}</div>
 			</div>
+			<div style={{height: "40px", width: "100%"}}>{price}</div>
 			{/* <Flex direction="row">
 				<div>{price}</div>
 				<div>{discountedPrice}</div>
