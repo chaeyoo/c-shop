@@ -63,6 +63,8 @@ export default function ProductList(props: { mainCtgr: any; subCtgr: any }) {
 						return (
 							<ProductListRow
 								key={idx}
+								productId={product.id}
+								brandId={product.brand}
 								brand={
 									<div
 										style={{
@@ -80,7 +82,7 @@ export default function ProductList(props: { mainCtgr: any; subCtgr: any }) {
 												fontSize: "15px",
 												lineHeight: "1.25",
 												fontWeight: "bold",
-												marginBottom: "8px",
+												marginBottom: "3px",
 											}}
 										>
 											{product.name}
@@ -93,7 +95,7 @@ export default function ProductList(props: { mainCtgr: any; subCtgr: any }) {
 											direction="row"
 											justify="space-between"
 											style={{
-												margin: "3px 5px",
+												margin: "0px 5px 3px 5px",
 											}}
 										>
 											<div
