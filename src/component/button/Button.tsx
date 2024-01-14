@@ -43,7 +43,7 @@ export const Button = styled.button<IButtonProps>(
 	({ borderRadius }) =>
 		borderRadius
 			? css`
-					border-radius: 6px;
+					border-radius: 5px;
 			  `
 			: css``
 );

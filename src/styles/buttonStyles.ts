@@ -22,6 +22,10 @@ export const buttonPrimaryMap = {
       background-color: ${colors.purple};
       color: ${colors.white}
     `,
+    grey: css`
+      background-color: ${colors.grey};
+      color: ${colors.white}
+    `,
 }
 
 export const buttonColorMap = {
@@ -50,6 +54,11 @@ export const buttonColorMap = {
       color: ${colors.purple};
       border: 1px solid ${colors.purple};
     `,
+    grey: css`
+    background-color: ${colors.white};
+      color: ${colors.thickGrey};
+      border: 1px solid ${colors.grey};
+    `
 
 }
 

@@ -8,6 +8,7 @@ export const colorPalette = css`
 		--white: #fff;
 		--black: #212121;
 		--grey: #c4c4c4;
+		--thickGrey: #565756;
 		--purple: #6332ff;
 	}
 `;
@@ -19,6 +20,7 @@ export const colors = {
 	white: "var(--white)",
 	black: "var(--black)",
 	grey: "var(--grey)",
+	thickGrey: "var(--thickGrey)",
 	purple: "var(--purple)",
 };
 

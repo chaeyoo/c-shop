@@ -1,5 +1,5 @@
 interface IProduct {
-    // id: string;
+    id: string;
     brand: string;
     color: string[];
     discount: number;

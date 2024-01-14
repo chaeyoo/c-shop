@@ -1,5 +1,5 @@
-import ProductListRow from "@/component/products/ProductRow";
-import ProductRow from "@/component/products/ProductRow";
+import ProductListRow from "@/component/products/ProductItem";
+import ProductRow from "@/component/products/ProductItem";
 import { useInfiniteQuery } from "react-query";
 import { getProducts } from "@/remote/products";
 import { flatten } from "lodash";
@@ -47,7 +47,7 @@ export default function ProductList(props: { mainCtgr: any; subCtgr: any }) {
 	}
 
 	console.log(data);
-	const products = flatten(data?.pages.map(({ items }) => items));
+	const products: any = flatten(data?.pages.map(({ items }) => items));
 	return (
 		<div>
 			<InfiniteScroll
@@ -58,7 +58,7 @@ export default function ProductList(props: { mainCtgr: any; subCtgr: any }) {
 				scrollThreshold={"100px"}
 			>
 				<List>
-					{products.map((product, idx) => {
+					{products.map((product: IProduct, idx: number) => {
 						console.log(product);
 						return (
 							<ProductListRow
