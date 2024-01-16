@@ -7,6 +7,7 @@ interface IProductProps {
 	discount?: React.ReactNode;
 	image?: React.ReactNode;
 	brand?: React.ReactNode;
+	like?: React.ReactNode;
 	brandId?: string;
 	productId?: string;
 	onClick?: () => void;
@@ -17,7 +18,7 @@ function ListRowText({ title }: { title: string }) {
 function ProductListRow(props: IProductProps) {
 	const router = useRouter();
 
-	const { name, image, price, brand, brandId, onClick, productId } = props;
+	const { name, image, price, brand, brandId, onClick, productId,like } = props;
 	const handleProductDtl = () => {
 		router.push(`/products/detail/${productId}`);
 	};
@@ -54,6 +55,7 @@ function ProductListRow(props: IProductProps) {
 				</div>
 			</div>
 			<div style={{ height: "40px", width: "100%" }}>{price}</div>
+			<div>{like}</div>
 		</div>
 	);
 }

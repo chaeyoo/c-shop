@@ -5,6 +5,7 @@ import { divide } from "lodash";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import Contents from "@/component/products/detail/contents/Contents";
+import { GoHeart } from "react-icons/go";
 import { Text } from "@/component/text/Text";
 import { Flex } from "@/component/flex/Flex";
 import { css } from "@emotion/react";
@@ -20,6 +21,24 @@ const divider = css`
 	margin: 10px;
 `;
 
+const sizeInfoBox = css`
+	margin: 10px;
+`;
+const iconButton = css`
+	display: flex;
+	align-items: center;
+	padding: 20px 13px;
+	height: 30px;
+	background-color: white;
+	font-size: 18px;
+`;
+
+const buyButton = css`
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 50px;
+`;
 export default function ProductDetail() {
 	const { query } = useRouter();
 	console.log("query.slug::", query.slug);
@@ -49,7 +68,7 @@ export default function ProductDetail() {
 		mainCtgr,
 	} = data;
 	return (
-		<div>
+		<div style={{ paddingBottom: "40px" }}>
 			<Carousel images={imageUrl} />
 			<Spacing size={5} />
 			<div css={topInfoBox}>
@@ -93,7 +112,7 @@ export default function ProductDetail() {
 						typography="t6"
 						style={{ textDecoration: "line-through" }}
 					>
-						{price}원
+						{price.toLocaleString()}원
 					</Text>
 				</div>
 			</div>
@@ -109,15 +128,26 @@ export default function ProductDetail() {
 			</div>
 			<Spacing size={10} />
 			<Flex justify="space-evenly">
-				<Button  size="medium" style={{ width: "45%" }} color="grey" borderRadius>
+				<Button
+					size="medium"
+					style={{ width: "45%" }}
+					color="grey"
+					borderRadius
+				>
 					<Flex direction="row" align="center" justify="center">
-						<BsShare /> <Spacing size={5} direction="horizontal"/>
+						<BsShare /> <Spacing size={5} direction="horizontal" />
 						공유하기
 					</Flex>
 				</Button>
-				<Button size="medium" style={{ width: "45%" }} color="grey" borderRadius>
+				<Button
+					size="medium"
+					style={{ width: "45%" }}
+					color="grey"
+					borderRadius
+				>
 					<Flex direction="row" align="center" justify="center">
-						<BiHeart /> <Spacing size={5} direction="horizontal"/> 좋아요 {like}
+						<BiHeart /> <Spacing size={5} direction="horizontal" />{" "}
+						좋아요 {like}
 					</Flex>
 				</Button>
 			</Flex>
@@ -129,6 +159,43 @@ export default function ProductDetail() {
 					<div key={i}>{v}</div>
 				))}
 			</div>*/}
+			<div
+				css={sizeInfoBox}
+				dangerouslySetInnerHTML={{ __html: sizeInfo }}
+			></div>
+			<Flex align="center" css={buyButton}>
+				<div
+					css={iconButton}
+					onClick={() => {
+						console.log("좋아요 버튼");
+					}}
+				>
+					<GoHeart />
+					<Spacing direction="horizontal" size={5} />
+					<Text typography="t8">{like}</Text>
+				</div>
+
+				<Button
+					full
+					color="purple"
+					primary
+					size="medium"
+					onClick={() => {
+						console.log("구매 버튼 클릭");
+					}}
+				>
+					구매하기
+				</Button>
+			</Flex>
+			<div>뿌양아ㅣ이이이아아</div>
+			<div>뿌양아ㅣ이이이아아</div>
+			<div>뿌양아ㅣ이이이아아</div>
 		</div>
 	);
 }
+/* position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 57px;
+	background-color: ${colors.white};
+	padding: 0px 10px; */

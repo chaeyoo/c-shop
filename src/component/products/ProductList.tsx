@@ -9,13 +9,21 @@ import Image from "next/image";
 import Loader from "@/component/loader/Loader";
 import styled from "styled-components";
 import { Flex } from "../flex/Flex";
-
+import { GoHeartFill } from "react-icons/go";
+import { css } from "@emotion/react";
+import { colors } from "@/styles/colorPalette";
+import { Spacing } from "../spacing/Spacing";
 const List = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-wrap: wrap;
 `;
+const likeSize = css`
+	font-size: 12px;
+	color: ${colors.red};
+	margin: 0px 4px 5px 5px;
+`
 export default function ProductList(props: { mainCtgr: any; subCtgr: any }) {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const { mainCtgr, subCtgr } = props;
@@ -89,6 +97,13 @@ export default function ProductList(props: { mainCtgr: any; subCtgr: any }) {
 										</p>
 									</div>
 								}
+								like={
+									<Flex  css={likeSize}>
+										<GoHeartFill/> 
+										<Spacing size={5} direction="horizontal"/>
+										{product.like}
+									</Flex>
+								}
 								price={
 									<>
 										<Flex
@@ -136,7 +151,7 @@ export default function ProductList(props: { mainCtgr: any; subCtgr: any }) {
                                                     margin: "3px 5px",
 												}}
 											>
-												{product.price + "원"}
+												{product.price.toLocaleString() + "원"}
 											</div>
 										) : null}
 									</>
