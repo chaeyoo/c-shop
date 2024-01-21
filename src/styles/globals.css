@@ -54,16 +54,16 @@
   color: darkgray;
 }
 
-.footer {
+/* .footer {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   position: fixed;
   width: 100%;
-  bottom: 0;
+  bottom: 0rem;
   height: 50px;
   background: black;
-}
+} */
 
 .layout {
   padding-top: 80px;
