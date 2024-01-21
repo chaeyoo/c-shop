@@ -1,4 +1,6 @@
 export interface IUesr {
-    uid: string;
-    email: string;
+	id: string;
+	name: string;
+	image: string;
+	email: string;
 }

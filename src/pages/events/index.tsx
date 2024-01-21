@@ -1,9 +1,11 @@
+import { userAtom } from "@/atoms/user";
 import { Button } from "@/component/button/Button";
 import { Input } from "@/component/input/Input";
 import { TextField } from "@/component/input/TextField";
 import { Text } from "@/component/text/Text";
 import { useAlertContext } from "@/contexts/AlertContext";
 import { css } from "@emotion/react";
+import { useRecoilState } from "recoil";
 
 export default function Events() {
 	const { open } = useAlertContext();
@@ -16,8 +18,12 @@ export default function Events() {
 		width: 200px;
 		height: 200px;
 	`;
+	const user = useRecoilState(userAtom);
+	console.log(user[0]?.email);
 	return (
 		<>
+			<Text  typography="t1">{user[0]?.email}</Text>
+			<br/>
 			이벤트가 될 샘플 페이지
 			<Text typography="t1" display="block">
 				텍쓰트요오
@@ -66,8 +72,6 @@ export default function Events() {
 			>
 				알러트 열어라
 			</Button>
-			
-			
 		</>
 	);
 }

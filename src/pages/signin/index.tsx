@@ -1,36 +1,64 @@
-import Form from "@/component/signin/Form";
-import { IFormValues } from "@/models/signin";
-import { useCallback } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "@/remote/firebase";
-import { useAlertContext } from "@/contexts/AlertContext";
-import { useRouter } from "next/router";
-export default function Signin() {
-	const router = useRouter();
-	const { open } = useAlertContext();
-	const handleSubmit = useCallback(async (formValues: IFormValues) => {
-		console.log(formValues);
-		const { email, password } = formValues;
-		try {
-			const response = await signInWithEmailAndPassword(
-				auth,
-				email,
-				password
-			);
-			router.push('/')
-			console.log(response);
-		} catch (e) {
-			
-			open({
-				title: "로그인 실패",
-				onButtonClick: () => {},
-				description: "아이디와 비밀번호를 확인해주세요.",
-			});
-		}
-	}, []);
+import { Button } from "@/component/button/Button";
+import { Flex } from "@/component/flex/Flex";
+import { Spacing } from "@/component/spacing/Spacing";
+import { Text } from "@/component/text/Text";
+import styled from "@emotion/styled";
+import { BuiltInProviderType } from "next-auth/providers/index";
+import {
+	ClientSafeProvider,
+	LiteralUnion,
+	getProviders,
+	signIn,
+} from "next-auth/react";
+const LoginContainer = styled.div`
+	background-color: #fff;
+	padding: 20px 30px;
+`;
+export default function Signin({
+	providers,
+}: {
+	providers: Record<LiteralUnion<BuiltInProviderType>, ClientSafeProvider>;
+}) {
 	return (
-		<>
-			<Form onSubmit={handleSubmit} />
-		</>
+		<div>
+			<Spacing size={100} />
+				<LoginContainer>
+					<Flex direction={"column"} align="center">
+						<Text typography="t1">
+							로그인
+						</Text>
+						<Spacing size={20} />
+						<ul>
+							{providers &&
+								Object.values(providers).map((provider) => (
+									<li key={provider.id}>
+										<Button
+											onClick={() =>
+												signIn(provider.id, {
+													callbackUrl: "/",
+												})
+											}
+											color="primary"
+											primary
+											size="large"
+											borderRadius
+										>
+											{provider.name} LOGIN
+										</Button>
+									</li>
+								))}
+						</ul>
+					</Flex>
+				</LoginContainer>
+		</div>
 	);
+}
+
+export async function getServerSideProps() {
+	const providers = await getProviders();
+	return {
+		props: {
+			providers,
+		},
+	};
 }
