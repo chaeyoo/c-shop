@@ -29,7 +29,7 @@ export default function Signin({
 						</Text>
 						<Spacing size={20} />
 						<ul>
-							{providers &&
+							{
 								Object.values(providers).map((provider) => (
 									<li key={provider.id}>
 										<Button
