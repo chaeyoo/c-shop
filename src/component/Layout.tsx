@@ -32,7 +32,7 @@ export default function Layout({ children }: LayoutProps) {
 					<Link href="/ranking" className="navbar__list--item">
 						랭킹
 					</Link>
-					<Link href="#" className="navbar__list--item">
+					<Link href="/magazine" className="navbar__list--item">
 						매거진
 					</Link>
 					<Link href="/events" className="navbar__list--item">
@@ -45,7 +45,7 @@ export default function Layout({ children }: LayoutProps) {
 				<Link href="/categories">
 					<BiMenu size={22} color={"white"} />
 				</Link>
-				<Link href="#">
+				<Link href="/like">
 					<CiHeart size={22} color={"white"} />
 				</Link>
 				<Link href="/">
@@ -54,7 +54,7 @@ export default function Layout({ children }: LayoutProps) {
 				<Link href="/mypage">
 					<IoPersonOutline size={22} color={"white"} />
 				</Link>
-				<Link href="#">
+				<Link href="/recent">
 					<GiBackwardTime size={22} color={"white"} />
 				</Link>
 			</div>
