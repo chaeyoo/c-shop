@@ -1,4 +1,5 @@
 import { userAtom } from "@/atoms/user";
+import SideMenu, { ListItem } from "@/bottomSheet/SideMenu";
 import { Button } from "@/component/button/Button";
 import { Input } from "@/component/input/Input";
 import { TextField } from "@/component/input/TextField";
@@ -20,10 +21,21 @@ export default function Events() {
 	`;
 	const user = useRecoilState(userAtom);
 	console.log(user[0]?.email);
+
+	const data: ListItem[] = [
+		{ name: "1", url: "/private/loans" },
+		{ name: "2", url: "/private/cards" },
+		{ name: "3", url: "/private/deposits" },
+		{ name: "4", url: "/private/services" },
+		{ name: "5", url: "/private/services" },
+		{ name: "6", url: "/private/services" },
+		{ name: "7", url: "/private/services" },
+	];
+
 	return (
 		<>
-			<Text  typography="t1">{user[0]?.email}</Text>
-			<br/>
+			<Text typography="t1">{user[0]?.email}</Text>
+			<br />
 			이벤트가 될 샘플 페이지
 			<Text typography="t1" display="block">
 				텍쓰트요오
@@ -72,6 +84,7 @@ export default function Events() {
 			>
 				알러트 열어라
 			</Button>
+			<SideMenu overlayColor="#303030" data={data} width={300} />,
 		</>
 	);
 }

@@ -8,7 +8,6 @@ import { Flex } from "@/component/flex/Flex";
 import { css } from "@emotion/react";
 import { colors } from "@/styles/colorPalette";
 import { GoChevronDown } from "react-icons/go";
-import Base from "@/component/bottomSheet/Base";
 const Filter = css`
 	width: 100%;
 	height: 45px;
@@ -68,7 +67,6 @@ export default function Products() {
 			{query.slug && query.sub && (
 				<ProductList mainCtgr={query.slug} subCtgr={query.sub} />
 			)}
-			<Base/>
 		</div>
 	);
 }
