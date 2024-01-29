@@ -37,6 +37,7 @@ const FooterDown = styled.div`
 `;
 
 export default function Layout({ children }: LayoutProps) {
+	
 	const scrollDirection = useScrollDirection();
 	return (
 		<div className="layout">

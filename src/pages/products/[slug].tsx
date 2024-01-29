@@ -8,6 +8,7 @@ import { Flex } from "@/component/flex/Flex";
 import { css } from "@emotion/react";
 import { colors } from "@/styles/colorPalette";
 import { GoChevronDown } from "react-icons/go";
+import SideMenu, { ListItem } from "@/bottomSheet/SideMenu";
 const Filter = css`
 	width: 100%;
 	height: 45px;
@@ -25,6 +26,19 @@ const FilterItem = css`
 `;
 export default function Products() {
 	const { query } = useRouter();
+	const [isSideOpen, setIsSideOpen] = useState<boolean>(false);
+	const handleOpenFilter = () => {
+		setIsSideOpen(true);
+	};
+	const data: ListItem[] = [
+		{ name: "1", url: "/private/loans" },
+		{ name: "2", url: "/private/cards" },
+		{ name: "3", url: "/private/deposits" },
+		{ name: "4", url: "/private/services" },
+		{ name: "5", url: "/private/services" },
+		{ name: "6", url: "/private/services" },
+		{ name: "7", url: "/private/services" },
+	];
 	useEffect(() => {
 		console.log("query.slug::", query.slug);
 		console.log("uery.sub::", query.sub);
@@ -38,25 +52,25 @@ export default function Products() {
 	return (
 		<div>
 			<Flex css={Filter} align="center">
-				<Flex css={FilterItem}>
+				<Flex css={FilterItem} onClick={handleOpenFilter}>
 					{" "}
 					추천순
 					<Spacing size={4} direction="horizontal" />
 					<GoChevronDown />
 				</Flex>
-				<Flex css={FilterItem}>
+				<Flex css={FilterItem} onClick={handleOpenFilter}>
 					{" "}
 					색상
 					<Spacing size={4} direction="horizontal" />
 					<GoChevronDown />
 				</Flex>
-				<Flex css={FilterItem}>
+				<Flex css={FilterItem} onClick={handleOpenFilter}>
 					{" "}
 					추천순
 					<Spacing size={4} direction="horizontal" />
 					<GoChevronDown />
 				</Flex>
-				<Flex css={FilterItem}>
+				<Flex css={FilterItem} onClick={handleOpenFilter}>
 					{" "}
 					브랜드
 					<Spacing size={4} direction="horizontal" />
@@ -67,6 +81,14 @@ export default function Products() {
 			{query.slug && query.sub && (
 				<ProductList mainCtgr={query.slug} subCtgr={query.sub} />
 			)}
+			<SideMenu
+				overlaycolor="rgba(0,0,0, 0.4)"
+				data={data}
+				width={240}
+				isSideOpen={isSideOpen}
+				setIsSideOpen={setIsSideOpen}
+				/* constrols={constrols} */
+			/>
 		</div>
 	);
 }

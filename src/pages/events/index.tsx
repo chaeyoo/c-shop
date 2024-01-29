@@ -6,10 +6,16 @@ import { TextField } from "@/component/input/TextField";
 import { Text } from "@/component/text/Text";
 import { useAlertContext } from "@/contexts/AlertContext";
 import { css } from "@emotion/react";
+import { useState } from "react";
 import { useRecoilState } from "recoil";
+import { motion, useAnimation } from "framer-motion";
 
 export default function Events() {
 	const { open } = useAlertContext();
+
+	// const constrols = useAnimation();
+	const [isSideOpen, setIsSideOpen] = useState<boolean>(false);
+
 	const bold = css`
 		font-weight: bold;
 	`;
@@ -37,6 +43,7 @@ export default function Events() {
 			<Text typography="t1">{user[0]?.email}</Text>
 			<br />
 			이벤트가 될 샘플 페이지
+			<Button onClick={() => setIsSideOpen(true)}>검색하기</Button>
 			<Text typography="t1" display="block">
 				텍쓰트요오
 			</Text>
@@ -84,7 +91,15 @@ export default function Events() {
 			>
 				알러트 열어라
 			</Button>
-			<SideMenu overlayColor="#303030" data={data} width={300} />,
+			<SideMenu
+				overlaycolor="rgba(0,0,0, 0.4)"
+				data={data}
+				width={240}
+				isSideOpen={isSideOpen}
+				setIsSideOpen={setIsSideOpen}
+				/* constrols={constrols} */
+			/>
+			,
 		</>
 	);
 }
