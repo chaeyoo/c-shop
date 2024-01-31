@@ -51,34 +51,33 @@ export default function Products() {
 			});
 		}
 	}, []);
+
+	interface ISearchType {
+		id: number;
+		name: string;
+	}
+	const searchType: ISearchType[] = [
+		{ id: 1, name: "검색" },
+		{ id: 2, name: "색상" },
+		{ id: 3, name: "가격" },
+		{ id: 3, name: "브랜드" },
+		{ id: 4, name: "세일" },
+	];
+	const FilterItemComponent = ({ name }: { name: string }) => {
+		return (
+			<Flex css={FilterItem} onClick={handleOpenFilter}>
+				{name}
+				<Spacing size={4} direction="horizontal" />
+				<GoChevronDown />
+			</Flex>
+		);
+	};
 	return (
 		<div>
 			<Flex css={Filter} align="center">
-				<Flex css={FilterItem} onClick={handleOpenFilter}>
-					검색
-					<Spacing size={4} direction="horizontal" />
-					<GoChevronDown />
-				</Flex>
-				<Flex css={FilterItem} onClick={handleOpenFilter}>
-					색상
-					<Spacing size={4} direction="horizontal" />
-					<GoChevronDown />
-				</Flex>
-				<Flex css={FilterItem} onClick={handleOpenFilter}>
-					가격
-					<Spacing size={4} direction="horizontal" />
-					<GoChevronDown />
-				</Flex>
-				<Flex css={FilterItem} onClick={handleOpenFilter}>
-					브랜드
-					<Spacing size={4} direction="horizontal" />
-					<GoChevronDown />
-				</Flex>
-				<Flex css={FilterItem} onClick={handleOpenFilter}>
-					세일
-					<Spacing size={4} direction="horizontal" />
-					<GoChevronDown />
-				</Flex>
+				{searchType.map((v) => (
+					<FilterItemComponent key={v.id} name={v.name} />
+				))}
 			</Flex>
 			<Spacing size={37} />
 			{query.slug && query.sub && (
