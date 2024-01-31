@@ -23,7 +23,7 @@ const FilterItem = css`
 	border-radius: 15px;
 	padding: 7px 10px;
 	font-size: 12px;
-	margin: 0px 7px 5px 7px;
+	margin: 0px 7px 7px 7px;
 	white-space: nowrap;
 	background-color: #fff;
 `;
