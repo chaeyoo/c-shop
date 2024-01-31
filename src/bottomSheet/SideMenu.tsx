@@ -52,6 +52,7 @@ const CompleteHandler = styled(motion.div)<{ width: number }>`
 	justify-content: center;
 	color: #fff;
 	font-size: 14px;
+	padding-left: 30px;
 `;
 
 const Divider = styled.div`
@@ -66,6 +67,12 @@ const Divider = styled.div`
 const SideBarContent = styled(motion.div)<{ width: number }>`
 	width: ${({ width }) => `${width}px`};
 	padding: 14px;
+`;
+
+const FakeDiv = styled.div`
+	height: 100%;
+	width: ;30px;
+	backgroundColor: #fff
 `;
 
 // const SideBarList: React.FC<{ data: ListItem[] }> = ({ data }) => (
@@ -90,13 +97,14 @@ export const SideMenu: React.FC<{
 	setIsSideOpen,
 }) => {
 	const constrols = useAnimation();
+
 	useEffect(() => {
 		constrols.start(isSideOpen ? "active" : "inactive");
 	}, [isSideOpen, constrols]);
 
 	const sidekickBodyStyles = {
 		active: {
-			x: 0,
+			x: -30,
 		},
 		inactive: {
 			x: -width,
@@ -115,8 +123,9 @@ export const SideMenu: React.FC<{
 				}}
 				dragMomentum={false}
 				onDragEnd={(_event, info) => {
+					console.log(info.velocity, "fdfd");
 					const isDraggingLeft = info.offset.x < 0;
-					const multiplier = isDraggingLeft ? 1 / 4 : 2 / 3;
+					const multiplier = isDraggingLeft ? 2 / 4 : 2 / 3;
 					const threshold = width * multiplier;
 
 					if (Math.abs(info.point.x) > threshold && isSideOpen) {
@@ -133,22 +142,31 @@ export const SideMenu: React.FC<{
 				animate={constrols}
 				variants={sidekickBodyStyles}
 			>
-				<SideBarContent width={width}>
-					<Flex direction="column" justify="center" align="center">
-						<Text typography="t5" bold>
-							필터
-						</Text>
-						<Divider />
-					</Flex>
-				</SideBarContent>
-				{isSideOpen ? (
-					<CompleteHandler
-						width={width}
-						onClick={() => setIsSideOpen(!isSideOpen)}
-					>
-						검색 결과 확인
-					</CompleteHandler>
-				) : null}
+				<FakeDiv />
+				<div>
+					<SideBarContent width={width}>
+						<Flex
+							direction="column"
+							justify="center"
+							align="center"
+						>
+							<Text typography="t5" bold>
+								필터
+							</Text>
+							<Divider />
+						</Flex>
+					</SideBarContent>
+					{isSideOpen ? (
+						<>
+							<CompleteHandler
+								width={width}
+								onClick={() => setIsSideOpen(!isSideOpen)}
+							>
+								검색 결과 확인
+							</CompleteHandler>
+						</>
+					) : null}
+				</div>
 			</SidekickBody>
 		</SidekickWrapper>
 	);

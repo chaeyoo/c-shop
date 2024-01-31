@@ -15,6 +15,7 @@ const Filter = css`
 	background-color: ${colors.white};
 	position: fixed;
 	padding-left: 10px;
+	overflow-x: auto;
 `;
 
 const FilterItem = css`
@@ -22,7 +23,8 @@ const FilterItem = css`
 	border-radius: 15px;
 	padding: 7px 10px;
 	font-size: 12px;
-	margin: 0px 5px;
+	margin: 0px 7px 5px 7px;
+	white-space: nowrap;
 `;
 export default function Products() {
 	const { query } = useRouter();
@@ -53,26 +55,27 @@ export default function Products() {
 		<div>
 			<Flex css={Filter} align="center">
 				<Flex css={FilterItem} onClick={handleOpenFilter}>
-					{" "}
-					추천순
+					검색
 					<Spacing size={4} direction="horizontal" />
 					<GoChevronDown />
 				</Flex>
 				<Flex css={FilterItem} onClick={handleOpenFilter}>
-					{" "}
 					색상
 					<Spacing size={4} direction="horizontal" />
 					<GoChevronDown />
 				</Flex>
 				<Flex css={FilterItem} onClick={handleOpenFilter}>
-					{" "}
-					추천순
+					가격
 					<Spacing size={4} direction="horizontal" />
 					<GoChevronDown />
 				</Flex>
 				<Flex css={FilterItem} onClick={handleOpenFilter}>
-					{" "}
 					브랜드
+					<Spacing size={4} direction="horizontal" />
+					<GoChevronDown />
+				</Flex>
+				<Flex css={FilterItem} onClick={handleOpenFilter}>
+					세일
 					<Spacing size={4} direction="horizontal" />
 					<GoChevronDown />
 				</Flex>
@@ -84,7 +87,7 @@ export default function Products() {
 			<SideMenu
 				overlaycolor="rgba(0,0,0, 0.4)"
 				data={data}
-				width={240}
+				width={290}
 				isSideOpen={isSideOpen}
 				setIsSideOpen={setIsSideOpen}
 				/* constrols={constrols} */
