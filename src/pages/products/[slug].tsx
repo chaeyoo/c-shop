@@ -25,6 +25,7 @@ const FilterItem = css`
 	font-size: 12px;
 	margin: 0px 7px 5px 7px;
 	white-space: nowrap;
+	background-color: #fff;
 `;
 export default function Products() {
 	const { query } = useRouter();
@@ -62,6 +63,7 @@ export default function Products() {
 		{ id: 3, name: "가격" },
 		{ id: 3, name: "브랜드" },
 		{ id: 4, name: "세일" },
+		{ id: 5, name: "테스트" },
 	];
 	const FilterItemComponent = ({ name }: { name: string }) => {
 		return (
