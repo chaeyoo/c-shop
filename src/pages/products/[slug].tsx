@@ -16,6 +16,7 @@ const Filter = css`
 	height: 46px;
 	background-color: ${colors.white};
 	position: fixed;
+	top: 73px;
 	padding-left: 10px;
 	overflow-x: auto;
 	z-index: 99;
