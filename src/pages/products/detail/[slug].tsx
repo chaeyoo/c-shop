@@ -37,7 +37,7 @@ const buyButton = css`
 	position: fixed;
 	left: 0;
 	right: 0;
-	bottom: 50px;
+	bottom: 0px;
 `;
 export default function ProductDetail() {
 	const { query } = useRouter();
@@ -68,7 +68,7 @@ export default function ProductDetail() {
 		mainCtgr,
 	} = data;
 	return (
-		<div style={{ paddingBottom: "40px" }}>
+		<div style={{ paddingBottom: "20px" }}>
 			<Carousel images={imageUrl} />
 			<Spacing size={5} />
 			<div css={topInfoBox}>

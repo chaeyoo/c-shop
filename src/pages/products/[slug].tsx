@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { getProducts } from "@/remote/products";
 import ProductList from "@/component/products/ProductList";
 import { useRouter } from "next/router";
@@ -9,9 +9,11 @@ import { css } from "@emotion/react";
 import { colors } from "@/styles/colorPalette";
 import { GoChevronDown } from "react-icons/go";
 import SideMenu, { ListItem } from "@/bottomSheet/SideMenu";
+import Layout from "@/component/Layout";
+import FooterLayout from "@/component/layout/FooterLayout";
 const Filter = css`
 	width: 100%;
-	height: 45px;
+	height: 46px;
 	background-color: ${colors.white};
 	position: fixed;
 	padding-left: 10px;
@@ -96,3 +98,11 @@ export default function Products() {
 		</div>
 	);
 }
+
+Products.getLayout = function getLayout(page: ReactElement) {
+	return (
+		<Layout>
+			<FooterLayout>{page}</FooterLayout>
+		</Layout>
+	);
+};

@@ -1,3 +1,4 @@
+import Layout from "@/component/Layout";
 import { Button } from "@/component/button/Button";
 import { Flex } from "@/component/flex/Flex";
 import { Spacing } from "@/component/spacing/Spacing";
@@ -10,6 +11,7 @@ import {
 	getProviders,
 	signIn,
 } from "next-auth/react";
+import { ReactElement } from "react";
 const LoginContainer = styled.div`
 	background-color: #fff;
 	padding: 20px 30px;
@@ -62,3 +64,8 @@ export async function getServerSideProps() {
 		},
 	};
 }
+
+
+Signin.getLayout = function getLayout(page: ReactElement) {
+	return <Layout>{page}</Layout>;
+};

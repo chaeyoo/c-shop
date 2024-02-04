@@ -1,11 +1,12 @@
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { ComponentType } from "react";
 
-function withAuth<Props = Record<string, never>>(
-	WrappedComponent: ComponentType<Props>
-) {
-	return function AuthenticatedComponent(props: Props) {
+type WithAuthComponent<P> = React.FunctionComponent<P> & {
+	getLayout?: (page: React.ReactElement) => React.ReactNode;
+};
+
+function withAuth<P = {}>(WrappedComponent: React.ComponentType<P>): WithAuthComponent<P>{
+	return function AuthenticatedComponent(props: P) {
 		const { data, status } = useSession();
 		const router = useRouter();
 

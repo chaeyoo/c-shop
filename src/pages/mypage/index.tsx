@@ -1,11 +1,14 @@
+import Layout from "@/component/Layout";
 import { Button } from "@/component/button/Button";
 import withAuth from "@/component/hoc/withAuth";
+import FooterLayout from "@/component/layout/FooterLayout";
 import { Spacing } from "@/component/spacing/Spacing";
 import useUser from "@/hooks/auth/useUser";
 import styled from "@emotion/styled";
 import { signOut } from "next-auth/react";
 
 import { useRouter } from "next/router";
+import { ReactElement } from "react";
 
 const LoginContainer = styled.div`
 	margin: 20px 30px;
@@ -34,4 +37,14 @@ function Mypage() {
 	);
 }
 
-export default withAuth(Mypage);
+const PageWithAuth = withAuth(Mypage);
+
+PageWithAuth.getLayout = function getLayout(page: ReactElement) {
+	return (
+		<Layout>
+			<FooterLayout>{page}</FooterLayout>
+		</Layout>
+	);
+};
+
+export default PageWithAuth;

@@ -7,13 +7,25 @@ import { AlertContextProvider } from "@/contexts/AlertContext";
 import { RecoilRoot } from "recoil";
 import { SessionProvider } from "next-auth/react";
 import AuthGuard from "@/component/auth/AuthGuard";
+import { NextPage } from "next";
+import { ReactElement, ReactNode } from "react";
 
 const queryClient = new QueryClient();
+
+export type NextPageWithLayout = NextPage & {
+	getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+	Component: NextPageWithLayout;
+};
 
 export default function App({
 	Component,
 	pageProps: { session, ...pageProps },
-}: AppProps) {
+}: AppPropsWithLayout) {
+	const getLayout = Component.getLayout ?? ((page) => page);
+
 	return (
 		<SessionProvider session={session}>
 			<RecoilRoot>
@@ -22,7 +34,7 @@ export default function App({
 						<GlobalStyle />
 						<AlertContextProvider>
 							<AuthGuard>
-								<Component {...pageProps} />
+								{getLayout(<Component {...pageProps} />)}
 							</AuthGuard>
 						</AlertContextProvider>
 					</Layout>

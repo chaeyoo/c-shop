@@ -1,4 +1,7 @@
+import Layout from "@/component/Layout";
 import withAuth from "@/component/hoc/withAuth";
+import FooterLayout from "@/component/layout/FooterLayout";
+import { ReactElement } from "react";
 
 function Like() {
 	return <>
@@ -6,4 +9,16 @@ function Like() {
     </>;
 }
 
-export default withAuth(Like);
+const PageWithAuth = withAuth(Like);
+
+
+PageWithAuth.getLayout = function getLayout(page: ReactElement) {
+	return (
+		<Layout>
+			<FooterLayout>{page}</FooterLayout>
+		</Layout>
+	);
+};
+
+
+export default PageWithAuth;

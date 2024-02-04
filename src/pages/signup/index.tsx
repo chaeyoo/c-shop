@@ -1,14 +1,11 @@
+import Layout from "@/component/Layout";
 import Form from "@/component/signup/Form";
-import { useAlertContext } from "@/contexts/AlertContext";
 import { IFormValues } from "@/models/signup";
-import { useRouter } from "next/router";
+import { ReactElement } from "react";
 
 export default function Signup() {
 	const handleSubmit = async (formValues: IFormValues) => {
 		console.log(formValues, "formValues");
-	
-
-		
 	};
 	return (
 		<>
@@ -16,3 +13,7 @@ export default function Signup() {
 		</>
 	);
 }
+
+Signup.getLayout = function getLayout(page: ReactElement) {
+	return <Layout>{page}</Layout>;
+};

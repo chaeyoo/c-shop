@@ -1,14 +1,14 @@
 import { userAtom } from "@/atoms/user";
 import SideMenu, { ListItem } from "@/bottomSheet/SideMenu";
+import Layout from "@/component/Layout";
 import { Button } from "@/component/button/Button";
 import { Input } from "@/component/input/Input";
 import { TextField } from "@/component/input/TextField";
 import { Text } from "@/component/text/Text";
 import { useAlertContext } from "@/contexts/AlertContext";
 import { css } from "@emotion/react";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { useRecoilState } from "recoil";
-import { motion, useAnimation } from "framer-motion";
 
 export default function Events() {
 	const { open } = useAlertContext();
@@ -103,3 +103,7 @@ export default function Events() {
 		</>
 	);
 }
+
+Events.getLayout = function getLayout(page: ReactElement) {
+	return <Layout>{page} </Layout>;
+};

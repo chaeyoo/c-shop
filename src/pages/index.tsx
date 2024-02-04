@@ -1,6 +1,8 @@
+import Layout from "@/component/Layout";
+import FooterLayout from "@/component/layout/FooterLayout";
 import Slideshow from "@/component/slides/Slideshow";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 
 export default function Home() {
 	const { data } = useSession();
@@ -25,3 +27,11 @@ export default function Home() {
 
 	return <Slideshow slides={slideData} />;
 }
+
+Home.getLayout = function getLayout(page: ReactElement) {
+	return (
+		<Layout>
+			<FooterLayout>{page}</FooterLayout>
+		</Layout>
+	);
+};
