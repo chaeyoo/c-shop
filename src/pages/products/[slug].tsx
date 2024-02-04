@@ -18,6 +18,7 @@ const Filter = css`
 	position: fixed;
 	padding-left: 10px;
 	overflow-x: auto;
+	z-index: 99;
 `;
 
 const FilterItem = css`
@@ -28,6 +29,7 @@ const FilterItem = css`
 	margin: 0px 7px 7px 7px;
 	white-space: nowrap;
 	background-color: #fff;
+	z-index: 999;
 `;
 export default function Products() {
 	const { query } = useRouter();
