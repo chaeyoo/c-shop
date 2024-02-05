@@ -1,13 +1,21 @@
 import { ReactNode } from "react";
+import classNames from "classnames";
 import Link from "next/link";
 import { SlBasket } from "react-icons/sl";
+import { Noto_Sans_KR } from 'next/font/google';
 interface LayoutProps {
 	children: ReactNode;
 }
 
+const notoSansKr = Noto_Sans_KR({
+    weight: ['300'],
+    subsets: ['latin'],
+});
+
+
 export default function Layout({ children }: LayoutProps) {
 	return (
-		<div className="layout">
+		<div className={classNames("layout", notoSansKr.className)}>
 			<div className="navbar">
 				<div className="navbar__top">
 					<div className="navbar__logo">CSHOP</div>
