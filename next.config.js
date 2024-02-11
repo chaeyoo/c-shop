@@ -6,8 +6,21 @@ const nextConfig = {
     emotion: true
   },
   images: {
-    domains: ['cataas.com', 'picsum.photos', 'firebasestorage.googleapis.com'],
-  },
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cataas.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+      },
+      {
+        protocol: 'https',
+        hostname: 'firebasestorage.googleapis.com',
+      },
+    ],
+  }
 }
 
 module.exports = nextConfig
