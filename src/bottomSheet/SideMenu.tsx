@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { motion, useAnimation } from "framer-motion";
 import { colors } from "@/styles/colorPalette";
-import { Flex } from "@/component/flex/Flex";
+import { colorCode, colorCodes } from "@/mock/color";
 import { Text } from "@/component/text/Text";
-
+import { Flex } from "@/component/flex/Flex";
+import { css } from "@emotion/react";
+import { Spacing } from "@/component/spacing/Spacing";
 export interface ListItem {
 	name: string;
 	url: string;
@@ -55,33 +57,16 @@ const CompleteHandler = styled(motion.div)<{ width: number }>`
 	padding-left: 30px;
 `;
 
-const Divider = styled.div`
-	width: 100%;
-	height: 1px;
-	border: 1rem solid rgba(8, 0, 0, 0.1);
-	border-width: 0 0 1px;
-	// box-shadow: 0 0 1px ${colors.grey};
-	margin-top: 5px;
-`;
-
 const SideBarContent = styled(motion.div)<{ width: number }>`
 	width: ${({ width }) => `${width}px`};
-	padding: 14px;
+	padding: 14px 0px 0px 45px;
 `;
 
-const FakeDiv = styled.div`
-	height: 100%;
-	width: ;30px;
-	backgroundColor: #fff
+const ColorDiv = css`
+	margin: 3px;
+	padding: 3px;
+	width: 50px;
 `;
-
-// const SideBarList: React.FC<{ data: ListItem[] }> = ({ data }) => (
-// 	<>
-// 		{data.map((item, i) => (
-// 			<div key={i}>{item.name}</div>
-// 		))}
-// 	</>
-// );
 
 export const SideMenu: React.FC<{
 	overlaycolor?: string;
@@ -97,7 +82,7 @@ export const SideMenu: React.FC<{
 	setIsSideOpen,
 }) => {
 	const constrols = useAnimation();
-
+	const [hex, setHex] = useState("#ffffff");
 	useEffect(() => {
 		constrols.start(isSideOpen ? "active" : "inactive");
 	}, [isSideOpen, constrols]);
@@ -123,7 +108,6 @@ export const SideMenu: React.FC<{
 				}}
 				dragMomentum={false}
 				onDragEnd={(_event, info) => {
-					console.log(info.velocity, "fdfd");
 					const isDraggingLeft = info.offset.x < 0;
 					const multiplier = isDraggingLeft ? 2 / 4 : 2 / 3;
 					const threshold = width * multiplier;
@@ -142,22 +126,52 @@ export const SideMenu: React.FC<{
 				animate={constrols}
 				variants={sidekickBodyStyles}
 			>
-				<FakeDiv />
 				<div>
-					<SideBarContent width={width}>
-						<Flex
-							direction="column"
-							justify="center"
-							align="center"
-						>
-							<Text typography="t5" bold>
-								필터
-							</Text>
-							<Divider />
-						</Flex>
-					</SideBarContent>
 					{isSideOpen ? (
 						<>
+							<SideBarContent width={width}>
+								<Text typography="t6" bold>
+									색상
+								</Text>
+								<Spacing direction="vertical" size={10} />
+								<Flex wrap="wrap">
+									{colorCode.map((v, i) => (
+										<Flex
+											css={ColorDiv}
+											key={i}
+											direction="column"
+											align="center"
+											justify="flex-start"
+										>
+											<div
+												key={i}
+												style={{
+													backgroundColor: v.code,
+													width: "30px",
+													height: "30px",
+													borderRadius: "50px",
+													border: `1px solid ${
+														v.code === "#FFFFFF" ||
+														v.code === "#FFFFF0"
+															? "#eee"
+															: "white"
+													}`,
+												}}
+											/>
+											<Spacing
+												direction="vertical"
+												size={3}
+											/>
+											<Text
+												typography="t7"
+												textAlign="center"
+											>
+												{v.kor}
+											</Text>
+										</Flex>
+									))}
+								</Flex>
+							</SideBarContent>
 							<CompleteHandler
 								width={width}
 								onClick={() => setIsSideOpen(!isSideOpen)}
