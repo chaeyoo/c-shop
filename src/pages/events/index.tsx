@@ -1,5 +1,5 @@
 import { userAtom } from "@/atoms/user";
-import SideMenu, { ListItem } from "@/bottomSheet/SideMenu";
+import SideMenu, { ListItem } from "@/sideMenu/SideMenu";
 import Layout from "@/component/Layout";
 import { Button } from "@/component/button/Button";
 import { Input } from "@/component/input/Input";

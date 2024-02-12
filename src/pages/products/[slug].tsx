@@ -8,7 +8,7 @@ import { Flex } from "@/component/flex/Flex";
 import { css } from "@emotion/react";
 import { colors } from "@/styles/colorPalette";
 import { GoChevronDown } from "react-icons/go";
-import SideMenu, { ListItem } from "@/bottomSheet/SideMenu";
+import SideMenu, { ListItem } from "@/sideMenu/SideMenu";
 import Layout from "@/component/Layout";
 import FooterLayout from "@/component/layout/FooterLayout";
 const Filter = css`

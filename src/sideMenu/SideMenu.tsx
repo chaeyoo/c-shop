@@ -7,6 +7,11 @@ import { Text } from "@/component/text/Text";
 import { Flex } from "@/component/flex/Flex";
 import { css } from "@emotion/react";
 import { Spacing } from "@/component/spacing/Spacing";
+import ColorFilter from "./colorFilter";
+import BrandFilter from "./brandFilter";
+import DiscountFilter from "./discountFilter";
+import PriceFilter from "./priceFilter";
+import SearchFilter from "./searchFilter";
 export interface ListItem {
 	name: string;
 	url: string;
@@ -60,12 +65,6 @@ const CompleteHandler = styled(motion.div)<{ width: number }>`
 const SideBarContent = styled(motion.div)<{ width: number }>`
 	width: ${({ width }) => `${width}px`};
 	padding: 14px 0px 0px 45px;
-`;
-
-const ColorDiv = css`
-	margin: 3px;
-	padding: 3px;
-	width: 50px;
 `;
 
 export const SideMenu: React.FC<{
@@ -130,47 +129,11 @@ export const SideMenu: React.FC<{
 					{isSideOpen ? (
 						<>
 							<SideBarContent width={width}>
-								<Text typography="t6" bold>
-									색상
-								</Text>
-								<Spacing direction="vertical" size={10} />
-								<Flex wrap="wrap">
-									{colorCode.map((v, i) => (
-										<Flex
-											css={ColorDiv}
-											key={i}
-											direction="column"
-											align="center"
-											justify="flex-start"
-										>
-											<div
-												key={i}
-												style={{
-													backgroundColor: v.code,
-													width: "30px",
-													height: "30px",
-													borderRadius: "50px",
-													border: `1px solid ${
-														v.code === "#FFFFFF" ||
-														v.code === "#FFFFF0"
-															? "#eee"
-															: "white"
-													}`,
-												}}
-											/>
-											<Spacing
-												direction="vertical"
-												size={3}
-											/>
-											<Text
-												typography="t7"
-												textAlign="center"
-											>
-												{v.kor}
-											</Text>
-										</Flex>
-									))}
-								</Flex>
+								<BrandFilter />
+								<DiscountFilter />
+								<PriceFilter />
+								<ColorFilter />
+								<SearchFilter />
 							</SideBarContent>
 							<CompleteHandler
 								width={width}
