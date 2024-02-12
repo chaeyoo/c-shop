@@ -64,6 +64,8 @@ const CompleteHandler = styled(motion.div)<{ width: number }>`
 
 const SideBarContent = styled(motion.div)<{ width: number }>`
 	width: ${({ width }) => `${width}px`};
+	overflow-y: scroll;
+	height: 91%;
 	padding: 14px 0px 0px 45px;
 `;
 
@@ -125,7 +127,7 @@ export const SideMenu: React.FC<{
 				animate={constrols}
 				variants={sidekickBodyStyles}
 			>
-				<div>
+				<div style={{ height: "100%" }}>
 					{isSideOpen ? (
 						<>
 							<SideBarContent width={width}>
